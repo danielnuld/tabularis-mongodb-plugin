@@ -1,0 +1,95 @@
+{
+  "$schema": "https://tabularis.dev/schemas/plugin-manifest.json",
+  "id": "mongodb",
+  "name": "MongoDB",
+  "version": "0.1.0",
+  "description": "MongoDB (6.0+) driver. Browse databases and collections, infer schemas by sampling, run native queries (find/aggregate/CRUD), and manage indexes.",
+  "default_port": 27017,
+  "default_username": "",
+  "executable": "tabularis-mongodb-plugin",
+  "color": "#13aa52",
+  "icon": "database",
+  "capabilities": {
+    "schemas": false,
+    "views": true,
+    "routines": false,
+    "file_based": false,
+    "folder_based": false,
+    "connection_string": true,
+    "connection_string_example": "mongodb://user:pass@localhost:27017/mydb",
+    "identifier_quote": "\"",
+    "alter_primary_key": false,
+    "alter_column": false,
+    "create_foreign_keys": false,
+    "manage_tables": false,
+    "readonly": false,
+    "supports_ssl": false,
+    "auto_increment_keyword": "",
+    "serial_type": "",
+    "inline_pk": false
+  },
+  "settings": [
+    {
+      "key": "uri",
+      "label": "Connection String (optional)",
+      "type": "string",
+      "default": "",
+      "description": "Full MongoDB connection string. When set it is used verbatim and overrides the host/port fields, e.g. mongodb+srv://user:pass@cluster.example.net/."
+    },
+    {
+      "key": "srv",
+      "label": "Use SRV (mongodb+srv)",
+      "type": "boolean",
+      "default": false,
+      "description": "Use the DNS seedlist scheme (mongodb+srv://). Typical for MongoDB Atlas. Drops the port."
+    },
+    {
+      "key": "auth_source",
+      "label": "Auth Source",
+      "type": "string",
+      "default": "",
+      "description": "Authentication database (authSource), e.g. admin."
+    },
+    {
+      "key": "replica_set",
+      "label": "Replica Set",
+      "type": "string",
+      "default": "",
+      "description": "Replica set name (replicaSet)."
+    },
+    {
+      "key": "tls",
+      "label": "Enable TLS",
+      "type": "boolean",
+      "default": false,
+      "description": "Connect using TLS."
+    },
+    {
+      "key": "sample_size",
+      "label": "Schema Inference Sample Size",
+      "type": "number",
+      "default": 100,
+      "description": "Number of documents sampled per collection to infer its columns."
+    },
+    {
+      "key": "extra",
+      "label": "Extra Connection Options",
+      "type": "string",
+      "default": "",
+      "description": "Additional connection-string query parameters appended verbatim, e.g. retryWrites=true&w=majority."
+    }
+  ],
+  "data_types": [
+    { "name": "STRING", "category": "string", "requires_length": false, "requires_precision": false },
+    { "name": "INT32", "category": "numeric", "requires_length": false, "requires_precision": false },
+    { "name": "INT64", "category": "numeric", "requires_length": false, "requires_precision": false },
+    { "name": "DOUBLE", "category": "numeric", "requires_length": false, "requires_precision": false },
+    { "name": "DECIMAL", "category": "numeric", "requires_length": false, "requires_precision": false },
+    { "name": "BOOLEAN", "category": "other", "requires_length": false, "requires_precision": false },
+    { "name": "DATE", "category": "date", "requires_length": false, "requires_precision": false },
+    { "name": "OBJECTID", "category": "string", "requires_length": false, "requires_precision": false },
+    { "name": "OBJECT", "category": "json", "requires_length": false, "requires_precision": false },
+    { "name": "ARRAY", "category": "json", "requires_length": false, "requires_precision": false },
+    { "name": "BINARY", "category": "binary", "requires_length": false, "requires_precision": false }
+  ]
+}
