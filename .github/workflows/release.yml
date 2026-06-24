@@ -28,8 +28,11 @@ jobs:
           - platform-label: linux-arm64
             runner: ubuntu-24.04-arm
             target: aarch64-unknown-linux-gnu
+          # Cross-compiled on the Apple-Silicon runner: the macOS toolchain
+          # builds x86_64 natively, avoiding the scarce free Intel (macos-13)
+          # runners that can sit queued indefinitely.
           - platform-label: darwin-x64
-            runner: macos-13
+            runner: macos-14
             target: x86_64-apple-darwin
           - platform-label: darwin-arm64
             runner: macos-14
