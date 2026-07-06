@@ -80,3 +80,20 @@ jobs:
         with:
           files: ${{ env.ASSET }}
           fail_on_unmatched_files: true
+
+  # The Tabularium registry resolves a release by scanning its published assets
+  # for a file literally named `.tabularium` — it does not unzip the platform
+  # archives. The build job bundles the manifest *inside* each zip, so publish
+  # it as a standalone asset too, otherwise the registry falls back to the
+  # unsigned repo-root path (no signed integrity / per-asset SHA-256).
+  manifest:
+    name: Attach .tabularium manifest asset
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Upload .tabularium to the release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: .tabularium
+          fail_on_unmatched_files: true
