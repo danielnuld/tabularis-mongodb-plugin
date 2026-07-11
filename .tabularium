@@ -1,7 +1,7 @@
 {
   "$schema": "https://registry.tabularis.dev/manifest.schema.json?kind=driver",
   "name": "mongodb",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "MongoDB (6.0+) driver for Tabularis. Browse databases and collections, infer schemas by sampling documents, run native queries (find/aggregate/CRUD via db.coll.op(...)), manage indexes, and edit documents.",
   "category": "integration",
   "kind": "driver",
